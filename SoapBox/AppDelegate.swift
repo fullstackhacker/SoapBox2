@@ -46,28 +46,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         print(url.description)
         let requestToken = BDBOAuth1Credential(queryString: url.query)
-        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "4xNvYjA8PFwogWxMDZgOPIMeA", consumerSecret: "ynYmrqAumMFs6eg2Yk1K4Hu6rHa17iYuJs8IgHENKAxH0OAOUC")
+        let twitterClient = TwitterClient.getInstance()
         
-        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accessToken) in
-            print("gotted an access token for a user")
-            twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil,  success: { (task, response) in
-                // do nothing
-                let userDict = response as! NSDictionary
-                let user = User(userDict: userDict)
-                
-            }, failure: { (taks, error) in
-         
+        twitterClient.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accessToken) in
+
+            twitterClient.currentAccount(success: { (user: User) -> Void in
+                print(user.name!)
+            }, failure: { (error) -> Void in
+                print(error!)
             })
             
-            twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil,  success: { (task, response) in
-                // do nothing
-                let tweetDicts = response as! [NSDictionary]
-                let tweets = Tweet.tweetsWithArray(tweetDicts: tweetDicts)
-                
-                
-            }, failure: { (taks, error) in
-                
+            
+            twitterClient.homeTimeline(success: {(tweets: [Tweet]) -> Void in
+                print(tweets.count)
+            }, failure: { (error) -> Void in
+                print(error!)
             })
+        
+
         }, failure: { (error) in
             if let error = error {
                 print(error)

@@ -14,6 +14,7 @@
 		450B445D1F7B4B9D00BA295A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B445C1F7B4B9D00BA295A /* LoginViewController.swift */; };
 		454E23691F7CD9F800AC6E12 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E23681F7CD9F800AC6E12 /* User.swift */; };
 		454E236B1F7CDA0600AC6E12 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E236A1F7CDA0600AC6E12 /* Tweet.swift */; };
+		454E236E1F7CDF5A00AC6E12 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E236D1F7CDF5A00AC6E12 /* TwitterClient.swift */; };
 		A7D454CC92BD20020096BC61 /* Pods_SoapBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA00FD0C1327211FD5E9685 /* Pods_SoapBox.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		450B445C1F7B4B9D00BA295A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "/Users/Mush/Development/SoapBox/SoapBox/View Controllers/LoginViewController.swift"; sourceTree = "<absolute>"; };
 		454E23681F7CD9F800AC6E12 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		454E236A1F7CDA0600AC6E12 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		454E236D1F7CDF5A00AC6E12 /* TwitterClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		65B507488DB17E0B6AA7828C /* Pods-SoapBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoapBox.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoapBox/Pods-SoapBox.release.xcconfig"; sourceTree = "<group>"; };
 		7AA00FD0C1327211FD5E9685 /* Pods_SoapBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoapBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -74,6 +76,7 @@
 		450B44491F7B465100BA295A /* SoapBox */ = {
 			isa = PBXGroup;
 			children = (
+				454E236C1F7CDF3F00AC6E12 /* API Clients */,
 				450B44611F7B4BB900BA295A /* Models */,
 				450B44601F7B4BB500BA295A /* Views */,
 				450B445F1F7B4BA500BA295A /* View Controllers */,
@@ -108,6 +111,14 @@
 				454E23681F7CD9F800AC6E12 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		454E236C1F7CDF3F00AC6E12 /* API Clients */ = {
+			isa = PBXGroup;
+			children = (
+				454E236D1F7CDF5A00AC6E12 /* TwitterClient.swift */,
+			);
+			path = "API Clients";
 			sourceTree = "<group>";
 		};
 		C3D092C117F3577A83D1EB2C /* Frameworks */ = {
@@ -249,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				454E236E1F7CDF5A00AC6E12 /* TwitterClient.swift in Sources */,
 				450B445D1F7B4B9D00BA295A /* LoginViewController.swift in Sources */,
 				450B444B1F7B465100BA295A /* AppDelegate.swift in Sources */,
 				454E23691F7CD9F800AC6E12 /* User.swift in Sources */,

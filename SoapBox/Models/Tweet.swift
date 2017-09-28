@@ -30,7 +30,7 @@ class Tweet: NSObject {
     
     class func tweetsWithArray(tweetDicts: [NSDictionary]) -> [Tweet] {
         return tweetDicts.map({ (tweetDict) -> Tweet in
-            return Tweet(tweetDict)
+            return Tweet(tweetDict: tweetDict)
         })
     }
 }

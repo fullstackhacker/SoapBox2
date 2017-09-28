@@ -22,21 +22,15 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginButtonClicked(_ sender: Any) {
-        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "4xNvYjA8PFwogWxMDZgOPIMeA", consumerSecret: "ynYmrqAumMFs6eg2Yk1K4Hu6rHa17iYuJs8IgHENKAxH0OAOUC")
+        let twitterClient = TwitterClient.getInstance()
+        twitterClient.login(success: {
+            // do nothing
+            // maybe segue
+        }) { (error) in
+            print(error)
+        }
 
-        twitterClient?.deauthorize()
-        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterDemo://oauth")!, scope: nil, success: { (requestToken: BDBOAuth1Credential!) in
-            let urlString: String = "https://api.twitter.com/oauth/authenticate?oauth_token=\(requestToken.token!)"
-            let url: URL = URL(string: urlString)!
-            print(urlString)
-            UIApplication.shared.open(url, options: [String : Any](), completionHandler: { (success) in
-                // do nothing right now
-            })
-        }, failure: {(error: Error?) -> Void in
-            if let error = error {
-                print(error)
-            }
-        })
+
     }
         
     
