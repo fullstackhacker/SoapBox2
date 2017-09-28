@@ -61,7 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil,  success: { (task, response) in
                 // do nothing
-                print("tweets", response!)
+                let tweetDicts = response as! [NSDictionary]
+                let tweets = Tweet.tweetsWithArray(tweetDicts: tweetDicts)
+                
                 
             }, failure: { (taks, error) in
                 
