@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BDBOAuth1Manager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        print(url.description)
+        let requestToken = BDBOAuth1Credential(queryString: url.query)
+        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "4xNvYjA8PFwogWxMDZgOPIMeA", consumerSecret: "ynYmrqAumMFs6eg2Yk1K4Hu6rHa17iYuJs8IgHENKAxH0OAOUC")
+        
+        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accessToken) in
+            print("gotted an access token for a user")
+            twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil,  success: { (task, response) in
+                // do nothing
+                let userDict = response as! NSDictionary
+                let user = User(userDict: userDict)
+                
+            }, failure: { (taks, error) in
+         
+            })
+            
+            twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil,  success: { (task, response) in
+                // do nothing
+                print("tweets", response!)
+                
+            }, failure: { (taks, error) in
+                
+            })
+        }, failure: { (error) in
+            if let error = error {
+                print(error)
+            }
+        })
+        return true
     }
 
 

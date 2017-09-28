@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		450B444B1F7B465100BA295A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B444A1F7B465100BA295A /* AppDelegate.swift */; };
-		450B444D1F7B465100BA295A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B444C1F7B465100BA295A /* ViewController.swift */; };
 		450B44501F7B465100BA295A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450B444E1F7B465100BA295A /* Main.storyboard */; };
 		450B44521F7B465100BA295A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450B44511F7B465100BA295A /* Assets.xcassets */; };
 		450B44551F7B465100BA295A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450B44531F7B465100BA295A /* LaunchScreen.storyboard */; };
+		450B445D1F7B4B9D00BA295A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B445C1F7B4B9D00BA295A /* LoginViewController.swift */; };
+		454E23691F7CD9F800AC6E12 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E23681F7CD9F800AC6E12 /* User.swift */; };
+		454E236B1F7CDA0600AC6E12 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E236A1F7CDA0600AC6E12 /* Tweet.swift */; };
+		A7D454CC92BD20020096BC61 /* Pods_SoapBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA00FD0C1327211FD5E9685 /* Pods_SoapBox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		321332510B1FF4AFC0C5BB2B /* Pods-SoapBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoapBox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoapBox/Pods-SoapBox.debug.xcconfig"; sourceTree = "<group>"; };
 		450B44471F7B465100BA295A /* SoapBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoapBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		450B444A1F7B465100BA295A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		450B444C1F7B465100BA295A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		450B444F1F7B465100BA295A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		450B44511F7B465100BA295A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		450B44541F7B465100BA295A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		450B44561F7B465100BA295A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		450B445C1F7B4B9D00BA295A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "/Users/Mush/Development/SoapBox/SoapBox/View Controllers/LoginViewController.swift"; sourceTree = "<absolute>"; };
+		454E23681F7CD9F800AC6E12 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		454E236A1F7CDA0600AC6E12 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		65B507488DB17E0B6AA7828C /* Pods-SoapBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoapBox.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoapBox/Pods-SoapBox.release.xcconfig"; sourceTree = "<group>"; };
+		7AA00FD0C1327211FD5E9685 /* Pods_SoapBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoapBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7D454CC92BD20020096BC61 /* Pods_SoapBox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		444AADE25B895FD15E1CB1D8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				321332510B1FF4AFC0C5BB2B /* Pods-SoapBox.debug.xcconfig */,
+				65B507488DB17E0B6AA7828C /* Pods-SoapBox.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		450B443E1F7B465100BA295A = {
 			isa = PBXGroup;
 			children = (
 				450B44491F7B465100BA295A /* SoapBox */,
 				450B44481F7B465100BA295A /* Products */,
+				444AADE25B895FD15E1CB1D8 /* Pods */,
+				C3D092C117F3577A83D1EB2C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +74,48 @@
 		450B44491F7B465100BA295A /* SoapBox */ = {
 			isa = PBXGroup;
 			children = (
+				450B44611F7B4BB900BA295A /* Models */,
+				450B44601F7B4BB500BA295A /* Views */,
+				450B445F1F7B4BA500BA295A /* View Controllers */,
 				450B444A1F7B465100BA295A /* AppDelegate.swift */,
-				450B444C1F7B465100BA295A /* ViewController.swift */,
 				450B444E1F7B465100BA295A /* Main.storyboard */,
 				450B44511F7B465100BA295A /* Assets.xcassets */,
 				450B44531F7B465100BA295A /* LaunchScreen.storyboard */,
 				450B44561F7B465100BA295A /* Info.plist */,
 			);
 			path = SoapBox;
+			sourceTree = "<group>";
+		};
+		450B445F1F7B4BA500BA295A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				450B445C1F7B4B9D00BA295A /* LoginViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		450B44601F7B4BB500BA295A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		450B44611F7B4BB900BA295A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				454E236A1F7CDA0600AC6E12 /* Tweet.swift */,
+				454E23681F7CD9F800AC6E12 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C3D092C117F3577A83D1EB2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7AA00FD0C1327211FD5E9685 /* Pods_SoapBox.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +125,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 450B44591F7B465100BA295A /* Build configuration list for PBXNativeTarget "SoapBox" */;
 			buildPhases = (
+				EEFEFBA3EBB4027286DBEC04 /* [CP] Check Pods Manifest.lock */,
 				450B44431F7B465100BA295A /* Sources */,
 				450B44441F7B465100BA295A /* Frameworks */,
 				450B44451F7B465100BA295A /* Resources */,
+				54DA93CF974C322BCBA3EB5C /* [CP] Embed Pods Frameworks */,
+				63F0C4E22273CE7DC1176DCB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,13 +188,71 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		54DA93CF974C322BCBA3EB5C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SoapBox/Pods-SoapBox-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BDBOAuth1Manager/BDBOAuth1Manager.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BDBOAuth1Manager.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SoapBox/Pods-SoapBox-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63F0C4E22273CE7DC1176DCB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SoapBox/Pods-SoapBox-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEFEFBA3EBB4027286DBEC04 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SoapBox-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		450B44431F7B465100BA295A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				450B444D1F7B465100BA295A /* ViewController.swift in Sources */,
+				450B445D1F7B4B9D00BA295A /* LoginViewController.swift in Sources */,
 				450B444B1F7B465100BA295A /* AppDelegate.swift in Sources */,
+				454E23691F7CD9F800AC6E12 /* User.swift in Sources */,
+				454E236B1F7CDA0600AC6E12 /* Tweet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +387,7 @@
 		};
 		450B445A1F7B465100BA295A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 321332510B1FF4AFC0C5BB2B /* Pods-SoapBox.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -280,13 +396,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mushaheedkapadia.SoapBox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		450B445B1F7B465100BA295A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65B507488DB17E0B6AA7828C /* Pods-SoapBox.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -295,7 +412,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mushaheedkapadia.SoapBox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
