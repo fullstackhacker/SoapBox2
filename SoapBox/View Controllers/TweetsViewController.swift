@@ -1,41 +1,40 @@
 //
-//  LoginViewController.swift
-//  
+//  TweetsViewController.swift
+//  SoapBox
 //
-//  Created by Mushaheed Kapadia on 9/26/17.
+//  Created by Mushaheed Kapadia on 9/28/17.
+//  Copyright © 2017 Mushaheed Kapadia. All rights reserved.
 //
 
 import UIKit
-import BDBOAuth1Manager
 
-class LoginViewController: UIViewController {
+class TweetsViewController: UIViewController {
+
+    var tweets: [Tweet]! = [Tweet]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        TwitterClient.getInstance().homeTimeline(success: { (tweets) in
+            self.tweets = tweets
+            print(tweets)
+        }) { (error) in
+            if let err = error {
+                print(err)
+            }
+        }
         // Do any additional setup after loading the view.
     }
-
+    @IBAction func onLogout(_ sender: Any) {
+        TwitterClient.getInstance().logout()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onLoginButtonClicked(_ sender: Any) {
-        let twitterClient = TwitterClient.getInstance()
-        twitterClient.login(success: {
-            // do nothing
-            // maybe segue
-            print("loggedin")
-            self.performSegue(withIdentifier: "loginSegue", sender: nil)
-        }) { (error) in
-            print(error!)
-        }
 
-
-    }
-        
-    
     /*
     // MARK: - Navigation
 

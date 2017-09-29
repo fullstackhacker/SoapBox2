@@ -13,14 +13,40 @@ class TwitterClient: BDBOAuth1SessionManager {
 
     private static let singleton: TwitterClient! = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "4xNvYjA8PFwogWxMDZgOPIMeA", consumerSecret: "ynYmrqAumMFs6eg2Yk1K4Hu6rHa17iYuJs8IgHENKAxH0OAOUC")
     
-    var @escaping loginSuccess: (() -> Void)?
-    var @escaping loginFailure: ((Error?) -> Void)?
+    var loginSuccess: (() -> Void)?
+    var loginFailure: ((Error?) -> Void)?
     
     class func getInstance() -> TwitterClient {
         return singleton
     }
     
-    func login(success:  (() -> Void), failure: @escaping ((Error?) -> Void) ) {
+    func handleOpenUrl(url: URL){
+        let requestToken = BDBOAuth1Credential(queryString: url.query)
+        fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accessToken) in
+            self.currentAccount(success: { (user) in
+                User.currentUser = user
+            }, failure: { (error) in
+                self.loginFailure!(error)
+            })
+            
+            self.loginSuccess?()
+            
+        }, failure: { (error) in
+            if let error = error {
+                self.loginFailure?(error)
+            }
+        })
+    }
+    
+    func logout() {
+        User.currentUser = nil
+        deauthorize()
+        
+        NotificationCenter.default.post(name: User.userDidLogoutNotification, object: nil)
+        
+    }
+    
+    func login(success: @escaping (() -> Void), failure: @escaping ((Error?) -> Void) ) {
         loginSuccess = success
         loginFailure = failure
         
@@ -33,7 +59,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                 // do nothing right now
             })
         }, failure: {(error: Error?) -> Void in
-            loginFailure!(error)
+            self.loginFailure!(error)
         })
     }
     

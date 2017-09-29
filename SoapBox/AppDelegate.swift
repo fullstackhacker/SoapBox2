@@ -17,6 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if User.currentUser != nil {
+            print("there is a current user")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+            
+            window?.rootViewController = vc
+        }
+
+        NotificationCenter.default.addObserver(forName: User.userDidLogoutNotification, object: nil, queue: OperationQueue.main) { (notification) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = vc
+        }
+        
         return true
     }
 
@@ -44,31 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        print(url.description)
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
-        let twitterClient = TwitterClient.getInstance()
-        
-        twitterClient.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accessToken) in
-
-            twitterClient.currentAccount(success: { (user: User) -> Void in
-                print(user.name!)
-            }, failure: { (error) -> Void in
-                print(error!)
-            })
-            
-            
-            twitterClient.homeTimeline(success: {(tweets: [Tweet]) -> Void in
-                print(tweets.count)
-            }, failure: { (error) -> Void in
-                print(error!)
-            })
-        
-
-        }, failure: { (error) in
-            if let error = error {
-                print(error)
-            }
-        })
+        TwitterClient.getInstance().handleOpenUrl(url: url)
         return true
     }
 
