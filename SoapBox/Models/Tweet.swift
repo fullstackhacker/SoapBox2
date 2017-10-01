@@ -56,4 +56,12 @@ class Tweet: NSObject {
             failure(error)
         }
     }
+    
+    func retweet(success: @escaping (Tweet) -> Void, failure: @escaping (Error) -> Void) {
+        TwitterClient.getInstance().retweet(self.id!, success: { (tweetDict) in
+            success(Tweet(tweetDict: tweetDict!))
+        }, failure: { (error) -> Void in
+            failure(error)
+        })
+    }
 }

@@ -106,4 +106,14 @@ class TwitterClient: BDBOAuth1SessionManager {
             failure(error)
         }
     }
+    
+    func retweet(_ tweetId: Int!, success: @escaping (NSDictionary?) -> Void, failure: @escaping (Error) -> Void) {
+        var params = [String: AnyObject?]()
+        params["id"] = tweetId as AnyObject
+        self.post("1.1/statuses/retweet/\(tweetId!).json", parameters: params, progress: nil, success: { (task, response) in
+            success((response as! NSDictionary))
+        }) { (task, error) in
+            failure(error)
+        }
+    }
 }

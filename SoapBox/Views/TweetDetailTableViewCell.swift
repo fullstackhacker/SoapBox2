@@ -30,7 +30,17 @@ class TweetDetailTableViewCell: UITableViewCell {
             fulltimestampLabel.text! = formatter.string(from: tweet.createdAt!)
         }
     }
-
+    @IBAction func likeTweet(_ sender: Any) {
+        
+    }
+    
+    @IBAction func retweet(_ sender: Any) {
+        tweet.retweet(success: {(tweet) -> Void in
+            print(tweet)
+        }, failure: { (error) -> Void in
+            print(error)
+        })
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
