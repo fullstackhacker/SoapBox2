@@ -12,10 +12,17 @@ class TweetsViewController: UIViewController {
 
     var tweets: [Tweet]! = [Tweet]()
     @IBOutlet weak var tweetsTableView: UITableView!
+    
+    var loadingMoreData: Bool! = false
 
-    func loadTimeline(next: (() -> Void)?) {
-        TwitterClient.getInstance().homeTimeline(success: { (tweets) in
-            self.tweets = tweets
+    func loadTimeline(sinceId: Int?, next: (() -> Void)?) {
+        TwitterClient.getInstance().homeTimeline(sinceId: sinceId, success: { (tweets) in
+            if sinceId != nil {
+                self.tweets = self.tweets + tweets
+            }
+            else{
+                self.tweets = tweets
+            }
             self.tweetsTableView.reloadData()
             next?()
             print(tweets)
@@ -39,7 +46,7 @@ class TweetsViewController: UIViewController {
         )
         tweetsTableView.insertSubview(refreshControl, at: 0)
         
-        self.loadTimeline(next: nil)
+        self.loadTimeline(sinceId: nil, next: nil)
         
         tweetsTableView.dataSource = self
         tweetsTableView.delegate = self
@@ -54,7 +61,7 @@ class TweetsViewController: UIViewController {
     func refreshControlAction(_ refreshControl: UIRefreshControl){
         
         print("refreshing")
-        self.loadTimeline() {
+        self.loadTimeline(sinceId: nil) {
             refreshControl.endRefreshing()
         }
     }
@@ -101,4 +108,21 @@ extension TweetsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
 
+}
+
+extension TweetsViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !self.loadingMoreData {
+            let reloadThreshold = self.tweetsTableView.contentSize.height / 2
+            
+            if scrollView.contentOffset.y > reloadThreshold && scrollView.isDragging {
+                self.loadingMoreData = true
+                self.loadTimeline(sinceId: self.tweets.last!.id!, next: {
+                    () -> Void in
+                    self.loadingMoreData = false
+                })
+            }
+            
+        }
+    }
 }
