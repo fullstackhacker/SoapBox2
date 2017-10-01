@@ -31,7 +31,11 @@ class TweetDetailTableViewCell: UITableViewCell {
         }
     }
     @IBAction func likeTweet(_ sender: Any) {
-        
+        tweet.like(success: {(tweet) -> Void in
+            print(tweet)
+        }, failure: { (error) -> Void in
+            print(error)
+        })
     }
     
     @IBAction func retweet(_ sender: Any) {

@@ -64,4 +64,12 @@ class Tweet: NSObject {
             failure(error)
         })
     }
+    
+    func like(success: @escaping (Tweet) -> Void, failure: @escaping (Error) -> Void) {
+        TwitterClient.getInstance().like(self.id!, success: { (tweetDict) in
+            success(Tweet(tweetDict: tweetDict!))
+        }, failure: { (error) -> Void in
+            failure(error)
+        })
+    }
 }
