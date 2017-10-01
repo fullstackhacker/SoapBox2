@@ -36,12 +36,14 @@ class ComposerViewController: UIViewController {
             text,
             success: { (tweet) -> Void in
                 print(tweet)
-                let alert = UIALertController(title: "")
                 self.dismiss(animated: true, completion: nil)
             },
             failure: { (error) -> Void in
                 print(error)
                 self.tweetTextView.isEditable = true
+                let alert = UIAlertController(title: "Network Failure", message: "Failed to send your tweet. Please try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         )
     }

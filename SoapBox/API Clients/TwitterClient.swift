@@ -11,7 +11,7 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
 
-    private static let singleton: TwitterClient! = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "2RlX54O8eoxVZfD30OhRMMppm", consumerSecret: "IkFLdA3Tci61h3zm3fbDx3SFM2u4j4Z92fHfXcU10jjgltNMwx")
+    private static let singleton: TwitterClient! = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "4A9Go1yvGfbV4PcCWSNYdHlw2", consumerSecret: "s0NGIe9Xwrha7neBDMJwf6Q1qKvOWAEw9RYLaIQcFAh9Ek7ZZf")
     
     var loginSuccess: (() -> Void)?
     var loginFailure: ((Error?) -> Void)?
@@ -90,7 +90,18 @@ class TwitterClient: BDBOAuth1SessionManager {
         var params = [String: AnyObject?]()
         params["status"] = text as AnyObject
         self.post("1.1/statuses/update.json", parameters: params, progress: nil, success: { (task, response) in
-            success(response as! NSDictionary)
+            success((response as! NSDictionary))
+        }) { (task, error) in
+            failure(error)
+        }
+    }
+    
+    func replyToTweet(text: String!, tweetId: Int!, success: @escaping (NSDictionary?) -> Void, failure: @escaping (Error) -> Void) {
+        var params = [String: AnyObject?]()
+        params["status"] = text as AnyObject
+        params["in_reply_to_status_id"] = tweetId as AnyObject
+        self.post("1.1/statuses/update.json", parameters: params, progress: nil, success: { (task, response) in
+            success((response as! NSDictionary))
         }) { (task, error) in
             failure(error)
         }

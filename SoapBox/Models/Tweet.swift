@@ -10,6 +10,7 @@ import UIKit
 
 class Tweet: NSObject {
     
+    var id: Int?
     var user: User?
     var text: String?
     var createdAt: Date?
@@ -17,6 +18,7 @@ class Tweet: NSObject {
     var favoriteCount: Int = 0
     
     init(tweetDict: NSDictionary) {
+        id = tweetDict["id"] as? Int
         user = User(userDict: tweetDict["user"] as! NSDictionary)
         text = tweetDict["text"] as? String
         retweetCount  = tweetDict["retweet_count"] as? Int ?? 0
@@ -45,5 +47,13 @@ class Tweet: NSObject {
                 return failure(error)
             }
         )
+    }
+    
+    func reply(_ text: String!, success: @escaping (Tweet) -> Void, failure: @escaping (Error) -> Void) {
+        TwitterClient.getInstance().replyToTweet(text: text, tweetId: self.id!, success: { (tweetDict) in
+            success(Tweet(tweetDict: tweetDict!))
+        }) { (error) in
+            failure(error)
+        }
     }
 }

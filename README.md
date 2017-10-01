@@ -6,6 +6,8 @@ Time spent: **X** hours spent in total
 Tuesday: 30 minutes
 Wednesday: 2 hours
 Thursday: 1.5 hours
+Saturday: 6 hours
+Sunday: 
 
 ## User Stories
 
