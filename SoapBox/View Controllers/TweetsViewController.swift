@@ -11,20 +11,54 @@ import UIKit
 class TweetsViewController: UIViewController {
 
     var tweets: [Tweet]! = [Tweet]()
+    @IBOutlet weak var tweetsTableView: UITableView!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    func loadTimeline(next: (() -> Void)?) {
         TwitterClient.getInstance().homeTimeline(success: { (tweets) in
             self.tweets = tweets
+            self.tweetsTableView.reloadData()
+            next?()
             print(tweets)
         }) { (error) in
             if let err = error {
                 print(err)
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(
+            self,
+            action: #selector(refreshControlAction(_:)),
+            for: UIControlEvents.valueChanged
+        )
+        tweetsTableView.insertSubview(refreshControl, at: 0)
+        
+        self.loadTimeline(next: nil)
+        
+        
+        tweetsTableView.dataSource = self
+        tweetsTableView.delegate = self
+        
+        tweetsTableView.estimatedRowHeight = 250
+        tweetsTableView.rowHeight = UITableViewAutomaticDimension
+        
+
         // Do any additional setup after loading the view.
     }
+    
+    func refreshControlAction(_ refreshControl: UIRefreshControl){
+        
+        print("refreshing")
+        self.loadTimeline() {
+            refreshControl.endRefreshing()
+        }
+    }
+    
     @IBAction func onLogout(_ sender: Any) {
         TwitterClient.getInstance().logout()
     }
@@ -44,5 +78,20 @@ class TweetsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+extension TweetsViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.tweets.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tweetsTableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetTableViewCell
+        cell.tweet = self.tweets[indexPath.row]
+        return cell
+        
+    }
+    
 
 }

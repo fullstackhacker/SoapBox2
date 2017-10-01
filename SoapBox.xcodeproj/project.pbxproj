@@ -16,6 +16,7 @@
 		454E236B1F7CDA0600AC6E12 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E236A1F7CDA0600AC6E12 /* Tweet.swift */; };
 		454E236E1F7CDF5A00AC6E12 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E236D1F7CDF5A00AC6E12 /* TwitterClient.swift */; };
 		45B8CDFB1F7E14F10048151D /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8CDFA1F7E14F10048151D /* TweetsViewController.swift */; };
+		45DD6F431F8072E200FFD5E9 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DD6F421F8072E200FFD5E9 /* TweetTableViewCell.swift */; };
 		A7D454CC92BD20020096BC61 /* Pods_SoapBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA00FD0C1327211FD5E9685 /* Pods_SoapBox.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		454E236A1F7CDA0600AC6E12 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		454E236D1F7CDF5A00AC6E12 /* TwitterClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		45B8CDFA1F7E14F10048151D /* TweetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
+		45DD6F421F8072E200FFD5E9 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		65B507488DB17E0B6AA7828C /* Pods-SoapBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoapBox.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoapBox/Pods-SoapBox.release.xcconfig"; sourceTree = "<group>"; };
 		7AA00FD0C1327211FD5E9685 /* Pods_SoapBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoapBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 		450B44601F7B4BB500BA295A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				45DD6F421F8072E200FFD5E9 /* TweetTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				450B444B1F7B465100BA295A /* AppDelegate.swift in Sources */,
 				454E23691F7CD9F800AC6E12 /* User.swift in Sources */,
 				454E236B1F7CDA0600AC6E12 /* Tweet.swift in Sources */,
+				45DD6F431F8072E200FFD5E9 /* TweetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

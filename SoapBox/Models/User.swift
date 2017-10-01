@@ -10,8 +10,8 @@ import UIKit
 
 class User: NSObject {
 
-    var name: String?
-    var screenName: String?
+    var fullname: String?
+    var handle: String?
     var profileImageUrl: URL?
     var tagLine: String?
     
@@ -21,8 +21,8 @@ class User: NSObject {
     static var userDidLogoutNotification = NSNotification.Name(rawValue: "userDidLogout")
     
     init(userDict: NSDictionary) {
-        name = userDict["name"] as? String
-        screenName = userDict["screen_name"] as? String
+        fullname = userDict["name"] as? String
+        handle = userDict["screen_name"] as? String
         profileImageUrl = URL(string: userDict["profile_image_url_https"] as? String ?? "")
         tagLine = userDict["description"] as? String
         self.userDict = userDict
