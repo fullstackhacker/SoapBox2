@@ -11,7 +11,7 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
 
-    private static let singleton: TwitterClient! = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "4xNvYjA8PFwogWxMDZgOPIMeA", consumerSecret: "ynYmrqAumMFs6eg2Yk1K4Hu6rHa17iYuJs8IgHENKAxH0OAOUC")
+    private static let singleton: TwitterClient! = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "2RlX54O8eoxVZfD30OhRMMppm", consumerSecret: "IkFLdA3Tci61h3zm3fbDx3SFM2u4j4Z92fHfXcU10jjgltNMwx")
     
     var loginSuccess: (() -> Void)?
     var loginFailure: ((Error?) -> Void)?
@@ -84,5 +84,15 @@ class TwitterClient: BDBOAuth1SessionManager {
         }, failure: { (taks, error) in
             failure(error)
         })
+    }
+    
+    func createTweet(text: String!, success: @escaping (NSDictionary?) -> Void, failure: @escaping (Error) -> Void) {
+        var params = [String: AnyObject?]()
+        params["status"] = text as AnyObject
+        self.post("1.1/statuses/update.json", parameters: params, progress: nil, success: { (task, response) in
+            success(response as! NSDictionary)
+        }) { (task, error) in
+            failure(error)
+        }
     }
 }

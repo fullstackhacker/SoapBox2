@@ -34,4 +34,16 @@ class Tweet: NSObject {
             return Tweet(tweetDict: tweetDict)
         })
     }
+    
+    class func createTweet(_ text: String!, success: @escaping (Tweet) -> Void, failure: @escaping (Error) -> Void) {
+        TwitterClient.getInstance().createTweet(
+            text: text,
+            success: { (tweetDict: NSDictionary!) -> Void in
+                return success(Tweet(tweetDict: tweetDict))
+            },
+            failure: { (error) -> Void in
+                return failure(error)
+            }
+        )
+    }
 }

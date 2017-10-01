@@ -29,7 +29,8 @@ class TweetsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.title = User.currentUser?.handle! ?? "Timeline"
+
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(
             self,
@@ -39,7 +40,6 @@ class TweetsViewController: UIViewController {
         tweetsTableView.insertSubview(refreshControl, at: 0)
         
         self.loadTimeline(next: nil)
-        
         
         tweetsTableView.dataSource = self
         tweetsTableView.delegate = self

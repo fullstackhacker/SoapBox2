@@ -22,7 +22,7 @@ class User: NSObject {
     
     init(userDict: NSDictionary) {
         fullname = userDict["name"] as? String
-        handle = userDict["screen_name"] as? String
+        handle = "@\(userDict["screen_name"] as? String ?? "")"
         profileImageUrl = URL(string: userDict["profile_image_url_https"] as? String ?? "")
         tagLine = userDict["description"] as? String
         self.userDict = userDict

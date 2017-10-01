@@ -182,6 +182,11 @@
                                 <action selector="onLogout:" destination="IKG-hm-jmG" id="6GA-PO-XMP"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Compose" id="6hW-YH-nQE">
+                            <connections>
+                                <segue destination="0Ca-St-MQB" kind="presentation" id="FFq-zo-S90"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tweetsTableView" destination="XCY-XR-YHh" id="xMW-c0-J8D"/>
@@ -190,6 +195,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HjD-lv-GMO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1573.5999999999999" y="35.532233883058474"/>
+        </scene>
+        <!--Compose-->
+        <scene sceneID="VoP-HF-Zhm">
+            <objects>
+                <viewController id="XLa-qB-x74" customClass="ComposerViewController" customModule="SoapBox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hV1-6F-f2o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLx-R3-QCe">
+                                <rect key="frame" x="331" y="64" width="44" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lFk-RP-SOv">
+                                <rect key="frame" x="5" y="100" width="375" height="350"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="ioU-C7-28y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QLx-R3-QCe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZdL-xy-uJ8" secondAttribute="leading" constant="315.5" id="5uV-2A-Oh5"/>
+                            <constraint firstItem="QLx-R3-QCe" firstAttribute="trailing" secondItem="ZdL-xy-uJ8" secondAttribute="trailing" id="6OU-Of-kcm"/>
+                            <constraint firstItem="lFk-RP-SOv" firstAttribute="leading" secondItem="ZdL-xy-uJ8" secondAttribute="leading" constant="5" id="Olp-Ox-1Vw"/>
+                            <constraint firstItem="QLx-R3-QCe" firstAttribute="top" secondItem="ZdL-xy-uJ8" secondAttribute="top" id="mGI-j9-vlb"/>
+                            <constraint firstItem="lFk-RP-SOv" firstAttribute="trailing" secondItem="ZdL-xy-uJ8" secondAttribute="trailing" constant="5" id="twa-hU-kei"/>
+                            <constraint firstItem="lFk-RP-SOv" firstAttribute="top" secondItem="QLx-R3-QCe" secondAttribute="bottom" constant="15" id="vgM-sM-BOb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZdL-xy-uJ8"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Compose" id="NtV-Bn-eMC">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="vj1-Ht-nr3">
+                            <connections>
+                                <action selector="onCancel:" destination="XLa-qB-x74" id="Se7-km-hz8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="characterCountLabel" destination="QLx-R3-QCe" id="wP2-kc-2nR"/>
+                        <outlet property="tweetTextView" destination="lFk-RP-SOv" id="t2n-Og-I0G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j3p-99-GPh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3364" y="39.130434782608695"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oaf-B1-P7x">
@@ -208,6 +264,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVp-53-uHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="881.60000000000002" y="36.881559220389811"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FFi-yq-JkN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0Ca-St-MQB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b4z-2j-Fd5">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XLa-qB-x74" kind="relationship" relationship="rootViewController" id="fOl-aX-qGy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XUX-iG-Wow" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2667.1999999999998" y="40.479760119940032"/>
         </scene>
     </scenes>
 </document>
