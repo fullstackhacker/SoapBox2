@@ -121,10 +121,30 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
+    func unretweet(_ tweetId: Int!, success: @escaping (NSDictionary?) -> Void, failure: @escaping (Error) -> Void) {
+        var params = [String: AnyObject?]()
+        params["id"] = tweetId as AnyObject
+        self.post("1.1/statuses/unretweet/\(tweetId!).json", parameters: params, progress: nil, success: { (task, response) in
+            success((response as! NSDictionary))
+        }) { (task, error) in
+            failure(error)
+        }
+    }
+    
     func like(_ tweetId: Int!, success: @escaping (NSDictionary?) -> Void, failure: @escaping (Error) -> Void) {
         var params = [String: AnyObject?]()
         params["id"] = tweetId as AnyObject
         self.post("1.1/favorites/create.json", parameters: params, progress: nil, success: { (task, response) in
+            success((response as! NSDictionary))
+        }) { (task, error) in
+            failure(error)
+        }
+    }
+    
+    func unlike(_ tweetId: Int!, success: @escaping (NSDictionary?) -> Void, failure: @escaping (Error) -> Void) {
+        var params = [String: AnyObject?]()
+        params["id"] = tweetId as AnyObject
+        self.post("1.1/favorites/destroy.json", parameters: params, progress: nil, success: { (task, response) in
             success((response as! NSDictionary))
         }) { (task, error) in
             failure(error)

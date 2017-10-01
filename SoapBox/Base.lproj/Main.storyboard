@@ -257,7 +257,9 @@
                                             <outlet property="fullnameLabel" destination="J5G-Xc-tDQ" id="MNa-oH-I40"/>
                                             <outlet property="fulltimestampLabel" destination="jKW-XV-WCg" id="UZR-Zh-TCv"/>
                                             <outlet property="handleLabel" destination="cry-J0-GsT" id="nga-KK-2Na"/>
+                                            <outlet property="likeButton" destination="oDI-77-m2O" id="zv7-k2-cto"/>
                                             <outlet property="profilePictureImageView" destination="6aE-dH-85O" id="Ogt-q5-heI"/>
+                                            <outlet property="retweetButton" destination="Q1B-ik-ttd" id="C8q-8T-XC6"/>
                                             <outlet property="tweetTextLabel" destination="FDM-yX-1iM" id="YeO-If-rgm"/>
                                         </connections>
                                     </tableViewCell>

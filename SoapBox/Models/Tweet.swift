@@ -14,6 +14,8 @@ class Tweet: NSObject {
     var user: User?
     var text: String?
     var createdAt: Date?
+    var retweeted: Bool? = false
+    var liked: Bool? = false
     var retweetCount: Int = 0
     var favoriteCount: Int = 0
     
@@ -23,7 +25,9 @@ class Tweet: NSObject {
         text = tweetDict["text"] as? String
         retweetCount  = tweetDict["retweet_count"] as? Int ?? 0
         favoriteCount = tweetDict["favorite_count"] as? Int ?? 0
-        
+        retweeted = tweetDict["retweeted"] as? Bool ?? false
+        liked = tweetDict["favorited"] as? Bool ?? false
+
         // created at
         let timestampString = tweetDict["created_at"] as? String
         let formatter = DateFormatter()
@@ -65,6 +69,14 @@ class Tweet: NSObject {
         })
     }
     
+    func unretweet(success: @escaping (Tweet) -> Void, failure: @escaping (Error) -> Void) {
+        TwitterClient.getInstance().unretweet(self.id!, success: { (tweetDict) in
+            success(Tweet(tweetDict: tweetDict!))
+        }, failure: { (error) -> Void in
+            failure(error)
+        })
+    }
+    
     func like(success: @escaping (Tweet) -> Void, failure: @escaping (Error) -> Void) {
         TwitterClient.getInstance().like(self.id!, success: { (tweetDict) in
             success(Tweet(tweetDict: tweetDict!))
@@ -72,4 +84,13 @@ class Tweet: NSObject {
             failure(error)
         })
     }
+    
+    func unlike(success: @escaping (Tweet) -> Void, failure: @escaping (Error) -> Void) {
+        TwitterClient.getInstance().unlike(self.id!, success: { (tweetDict) in
+            success(Tweet(tweetDict: tweetDict!))
+        }, failure: { (error) -> Void in
+            failure(error)
+        })
+    }
+    
 }
