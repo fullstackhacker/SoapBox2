@@ -7,27 +7,56 @@
 //
 
 import UIKit
-
-enum TweetSections: String {
-    case Tweet = "Tweet"
-    case Reply = "Reply"
-}
+import AFNetworking
 
 class TweetViewController: UIViewController {
-
-    @IBOutlet weak var tweetTableView: UITableView!
+    
+    @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var profilePictureImageView: UIImageView!
+    @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var handleLabel: UILabel!
+    @IBOutlet weak var fullnameLabel: UILabel!
+    @IBOutlet weak var replyTextField: UITextField!
+    @IBOutlet weak var retweetImageView: UIImageView!
+    @IBOutlet weak var likeImageView: UIImageView!
     
     var tweet: Tweet!
-    var replies: [Tweet]! = [Tweet]()
-    
-    var sections: [TweetSections] = [.Tweet, .Reply]
+
+    func loadTweetProps() {
+        fullnameLabel.text = tweet.user!.fullname!
+        handleLabel.text = tweet.user!.handle!
+        tweetTextLabel.text = tweet.text!
+        profilePictureImageView.setImageWith(tweet.user!.profileImageUrl!)
+        
+        //timestamp magic
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+        timestampLabel.text = formatter.string(from: tweet.createdAt!)
+        
+        // retweet image stuff
+        if tweet.retweeted! {
+            retweetImageView.image = #imageLiteral(resourceName: "retweeted")
+        }
+        else {
+            retweetImageView.image = #imageLiteral(resourceName: "not-retweeted")
+        }
+        
+        if tweet.liked! {
+            likeImageView.image = #imageLiteral(resourceName: "liked")
+        }
+        else {
+            likeImageView.image = #imageLiteral(resourceName: "unliked")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        tweetTableView.delegate = self
-        tweetTableView.dataSource = self
+        replyTextField.becomeFirstResponder()
+        replyTextField.delegate = self
+        
+        loadTweetProps()
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +64,46 @@ class TweetViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func retweetTap(_ sender: Any) {
+        
+        if !tweet.retweeted! {
+            tweet.retweet(success: {(tweet) -> Void in
+                self.tweet = tweet
+                self.loadTweetProps()
+            }, failure: { (error) -> Void in
+                print(error)
+            })
+        }
+        else {
+            tweet.unretweet(success: {(tweet) -> Void in
+                self.tweet = tweet
+                self.loadTweetProps()
+            }, failure: { (error) -> Void in
+                print(error)
+            })
+        }
 
+    }
+    
+    @IBAction func likeTap(_ sender: Any) {
+        
+        if !tweet.liked! {
+            tweet.like(success: {(tweet) -> Void in
+                self.tweet = tweet
+                self.loadTweetProps()
+            }, failure: { (error) -> Void in
+                print(error)
+            })
+        }
+        else {
+            tweet.unlike(success: {(tweet) -> Void in
+                self.tweet = tweet
+                self.loadTweetProps()
+            }, failure: { (error) -> Void in
+                print(error)
+            })
+        }
+    }
     /*
     // MARK: - Navigation
 
@@ -48,32 +116,20 @@ class TweetViewController: UIViewController {
 
 }
 
-extension TweetViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if sections[section] == TweetSections.Tweet {
-            return 1
-        }
-        if sections[section] == TweetSections.Reply {
-            return 1
-        }
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if sections[indexPath.section] == TweetSections.Tweet {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TweetDetailCell") as! TweetDetailTableViewCell
-            cell.tweet = tweet
-            return cell
-        }
-        if sections[indexPath.section] == TweetSections.Reply {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyCell") as! ReplyTableViewCell
-            cell.tweet = tweet
-            return cell
-        }
-        return UITableViewCell()
+extension TweetViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let replyText = "\(tweet.user!.handle!) \(textField.text!)"
+        tweet.reply(
+            replyText,
+            success: { (tweet: Tweet) in
+                print(tweet)
+                textField.resignFirstResponder()
+                textField.text = nil
+            },
+            failure: { (error: Error) in
+                print(error)
+            }
+        )
+        return false
     }
 }
