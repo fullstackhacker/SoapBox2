@@ -1,6 +1,7 @@
 # Project 4 - *SoapBox*
 
 Time spent: **X** hours spent in total
+
 Tuesday:
 
 
@@ -9,7 +10,7 @@ Tuesday:
 The following **required** functionality is completed:
 
 - [ ] Hamburger menu
-   - [ ] Dragging anywhere in the view should reveal the menu.
+   - [x] Dragging anywhere in the view should reveal the menu.
    - [ ] The menu should include links to your profile, the home timeline, and the mentions view.
    - [ ] The menu can look similar to the example or feel free to take liberty with the UI.
 - [ ] Profile page

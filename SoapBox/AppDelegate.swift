@@ -17,12 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+
         if User.currentUser != nil {
             print("there is a current user")
+
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
             
-            window?.rootViewController = vc
+            let burgerViewController = storyboard.instantiateViewController(withIdentifier: "BurgerViewController") as! BurgerViewController
+            let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            
+            burgerViewController.menuViewController = menuViewController
+            menuViewController.burgerViewController = burgerViewController
+            
+            window?.rootViewController = burgerViewController
         }
 
         NotificationCenter.default.addObserver(forName: User.userDidLogoutNotification, object: nil, queue: OperationQueue.main) { (notification) in
