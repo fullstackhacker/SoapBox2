@@ -83,7 +83,7 @@ class BurgerViewController: UIViewController {
         }
         else if sender.state == UIGestureRecognizerState.ended {
             
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: 0.1, animations: {
                 if velocity.x > 0 {
                     self.leftMarginConstraint.constant = self.view.frame.size.width - 100
                 }

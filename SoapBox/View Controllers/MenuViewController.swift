@@ -13,9 +13,11 @@ class MenuViewController: UIViewController {
     
     var burgerViewController: BurgerViewController!
     var homeTimelineNavigationController: UINavigationController!
+    var userProfileNavigationController: UINavigationController!
+    var mentionsNavigationController: UINavigationController!
 
     
-    let pages: [String] = ["Home"]
+    let pages: [String] = ["Home", "Profile", "Mentions"]
     var pageViewControllers: [UINavigationController] = []
 
     override func viewDidLoad() {
@@ -24,11 +26,18 @@ class MenuViewController: UIViewController {
         menuTableView.delegate = self
         menuTableView.dataSource = self
         
+        menuTableView.estimatedRowHeight = 250
+        menuTableView.rowHeight = UITableViewAutomaticDimension
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         homeTimelineNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
+        userProfileNavigationController = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! UINavigationController
+        mentionsNavigationController = storyboard.instantiateViewController(withIdentifier: "Mentions") as! UINavigationController
         
-        
+
         pageViewControllers.append(homeTimelineNavigationController)
+        pageViewControllers.append(userProfileNavigationController)
+        pageViewControllers.append(mentionsNavigationController)
 
         // Do any additional setup after loading the view.
     }
