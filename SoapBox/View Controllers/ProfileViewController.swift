@@ -7,11 +7,29 @@
 //
 
 import UIKit
+import AFNetworking
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var profileHeaderImageView: UIImageView!
+    @IBOutlet weak var userProfileTableView: UITableView!
+    
+    var user: User?
+    
+    func loadUser() {
+        if let user = self.user ?? User.currentUser {
+            self.user = user
+            profileHeaderImageView.setImageWith(user.profileBannerUrl!)
+            self.title = user.handle!
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadUser()
+        
+        userProfileTableView.delegate = self
+        userProfileTableView.dataSource = self
 
         // Do any additional setup after loading the view.
     }
@@ -32,4 +50,18 @@ class ProfileViewController: UIViewController {
     }
     */
 
+}
+
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell") as! UserProfileTableViewCell
+        cell.user = user
+        return cell
+    }
+    
+    
 }

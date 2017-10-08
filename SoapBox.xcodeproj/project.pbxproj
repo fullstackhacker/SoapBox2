@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4502A8E51F8810A8000FC041 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4502A8E41F8810A7000FC041 /* ProfileViewController.swift */; };
+		4502A8E71F881BFC000FC041 /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4502A8E61F881BFC000FC041 /* UserProfileTableViewCell.swift */; };
 		450B444B1F7B465100BA295A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B444A1F7B465100BA295A /* AppDelegate.swift */; };
 		450B44501F7B465100BA295A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450B444E1F7B465100BA295A /* Main.storyboard */; };
 		450B44521F7B465100BA295A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450B44511F7B465100BA295A /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		321332510B1FF4AFC0C5BB2B /* Pods-SoapBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoapBox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoapBox/Pods-SoapBox.debug.xcconfig"; sourceTree = "<group>"; };
 		4502A8E41F8810A7000FC041 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "SoapBox/View Controllers/ProfileViewController.swift"; sourceTree = "<group>"; };
+		4502A8E61F881BFC000FC041 /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserProfileTableViewCell.swift; path = SoapBox/Views/UserProfileTableViewCell.swift; sourceTree = "<group>"; };
 		450B44471F7B465100BA295A /* SoapBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoapBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		450B444A1F7B465100BA295A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		450B444F1F7B465100BA295A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		450B443E1F7B465100BA295A = {
 			isa = PBXGroup;
 			children = (
+				4502A8E61F881BFC000FC041 /* UserProfileTableViewCell.swift */,
 				4502A8E41F8810A7000FC041 /* ProfileViewController.swift */,
 				45119FF51F855BCD00F674FF /* PageTableViewCell.swift */,
 				450B44491F7B465100BA295A /* SoapBox */,
@@ -288,6 +291,7 @@
 				450B445D1F7B4B9D00BA295A /* LoginViewController.swift in Sources */,
 				45C305A71F81526C0036E756 /* TweetViewController.swift in Sources */,
 				45B8CDFB1F7E14F10048151D /* TweetsViewController.swift in Sources */,
+				4502A8E71F881BFC000FC041 /* UserProfileTableViewCell.swift in Sources */,
 				45119FF41F85523500F674FF /* MenuViewController.swift in Sources */,
 				450B444B1F7B465100BA295A /* AppDelegate.swift in Sources */,
 				454E23691F7CD9F800AC6E12 /* User.swift in Sources */,

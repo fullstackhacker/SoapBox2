@@ -13,7 +13,11 @@ class User: NSObject {
     var fullname: String?
     var handle: String?
     var profileImageUrl: URL?
+    var profileBannerUrl: URL?
     var tagLine: String?
+    var followersCount: Int?
+    var followingCount: Int?
+    var tweetsCount: Int?
     
     var userDict: NSDictionary!
     
@@ -21,10 +25,15 @@ class User: NSObject {
     static var userDidLogoutNotification = NSNotification.Name(rawValue: "userDidLogout")
     
     init(userDict: NSDictionary) {
+        print(userDict)
         fullname = userDict["name"] as? String
         handle = "@\(userDict["screen_name"] as? String ?? "")"
         profileImageUrl = URL(string: userDict["profile_image_url_https"] as? String ?? "")
+        profileBannerUrl = URL(string: userDict["profile_banner_url"] as? String ?? "")
         tagLine = userDict["description"] as? String
+        tweetsCount = userDict["statuses_count"] as? Int ?? 0
+        followersCount = userDict["followers_count"] as? Int ?? 0
+        followingCount = userDict["friends_count"] as? Int ?? 0
         self.userDict = userDict
     }
     
