@@ -13,6 +13,8 @@ class TweetsViewController: UIViewController {
     var tweets: [Tweet]! = [Tweet]()
     @IBOutlet weak var tweetsTableView: UITableView!
     
+    var menuViewController: MenuViewController!
+    
     var loadingMoreData: Bool! = false
 
     func loadTimeline(sinceId: Int?, next: (() -> Void)?) {
@@ -89,6 +91,14 @@ class TweetsViewController: UIViewController {
                 destination.tweet = sender.tweet
             }
         }
+        
+        if let destination = segue.destination as? UINavigationController {
+            if let profileViewController = destination.topViewController as? ProfileViewController {
+                if let sender = sender as? TweetTableViewCell {
+                    profileViewController.user = sender.tweet.user
+                }
+            }
+        }
 
     }
     
@@ -103,12 +113,14 @@ extension TweetsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tweetsTableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetTableViewCell
         cell.tweet = self.tweets[indexPath.row]
+        cell.delegate = menuViewController
         return cell
         
     }
     
 
 }
+
 
 extension TweetsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

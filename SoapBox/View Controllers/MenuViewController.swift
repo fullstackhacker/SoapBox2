@@ -60,6 +60,16 @@ class MenuViewController: UIViewController {
 
 }
 
+
+extension MenuViewController: TweetTableViewCellDelegate {
+    func showUser(sender: TweetTableViewCell) {
+        if let userProfileViewController = userProfileNavigationController.topViewController as? ProfileViewController {
+            userProfileViewController.user = sender.tweet.user
+            burgerViewController.contentViewController = userProfileNavigationController
+        }
+    }
+}
+
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = menuTableView.dequeueReusableCell(withIdentifier: "menuCell") as! PageTableViewCell
@@ -72,6 +82,13 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         menuTableView.deselectRow(at: indexPath, animated: true)
-        burgerViewController.contentViewController = pageViewControllers[indexPath.row]
+        let pageViewNavigationController = pageViewControllers[indexPath.row]
+        if let pageViewController = pageViewNavigationController.topViewController as? TweetsViewController {
+            pageViewController.menuViewController = self
+        }
+        if let pageViewController = pageViewNavigationController.topViewController as? ProfileViewController {
+            pageViewController.user = nil
+        }
+        burgerViewController.contentViewController = pageViewNavigationController
     }
 }

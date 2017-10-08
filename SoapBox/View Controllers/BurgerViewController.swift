@@ -59,7 +59,11 @@ class BurgerViewController: UIViewController {
         
         menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
         menuViewController.burgerViewController = self
-        contentViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
+        let tweetsNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
+        if let tweetsViewController = tweetsNavigationController.topViewController as? TweetsViewController {
+            tweetsViewController.menuViewController = menuViewController
+        }
+        contentViewController = tweetsNavigationController
 
         // Do any additional setup after loading the view.
     }

@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
             self.user = user
             profileHeaderImageView.setImageWith(user.profileBannerUrl!)
             self.title = user.handle!
+            userProfileTableView.reloadData()
         }
     }
 
@@ -32,6 +33,10 @@ class ProfileViewController: UIViewController {
         userProfileTableView.dataSource = self
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.loadUser()
     }
 
     override func didReceiveMemoryWarning() {
