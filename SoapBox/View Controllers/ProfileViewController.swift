@@ -19,7 +19,9 @@ class ProfileViewController: UIViewController {
     func loadUser() {
         if let user = self.user ?? User.currentUser {
             self.user = user
-            profileHeaderImageView.setImageWith(user.profileBannerUrl!)
+            if let profileBannerUrl = user.profileBannerUrl {
+                profileHeaderImageView.setImageWith(profileBannerUrl)
+            }
             self.title = user.handle!
             userProfileTableView.reloadData()
         }
