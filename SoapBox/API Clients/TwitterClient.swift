@@ -90,6 +90,42 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func userTimeline(sinceId: Int?, handle: String?, success: @escaping (([Tweet]) -> Void), failure: @escaping ((Error?) -> Void)) {
+        // get tweets
+        var params = [String: AnyObject?]()
+        if let sinceId = sinceId {
+            params["since_id"] = sinceId as AnyObject
+        }
+        
+        if let handle = handle {
+            params["screen_name"] = handle as AnyObject
+        }
+        
+        get("1.1/statuses/user_timeline.json", parameters: params, progress: nil,  success: { (task, response) in
+            let tweetDicts = response as! [NSDictionary]
+            let tweets = Tweet.tweetsWithArray(tweetDicts: tweetDicts)
+            success(tweets)
+        }, failure: { (taks, error) in
+            failure(error)
+        })
+    }
+    
+    func mentionsTimeline(sinceId: Int?, success: @escaping (([Tweet]) -> Void), failure: @escaping ((Error?) -> Void)) {
+        // get tweets
+        var params = [String: AnyObject?]()
+        if let sinceId = sinceId {
+            params["since_id"] = sinceId as AnyObject
+        }
+        
+        get("1.1/statuses/mentions_timeline.json", parameters: params, progress: nil,  success: { (task, response) in
+            let tweetDicts = response as! [NSDictionary]
+            let tweets = Tweet.tweetsWithArray(tweetDicts: tweetDicts)
+            success(tweets)
+        }, failure: { (taks, error) in
+            failure(error)
+        })
+    }
+    
     func createTweet(text: String!, success: @escaping (NSDictionary?) -> Void, failure: @escaping (Error) -> Void) {
         var params = [String: AnyObject?]()
         params["status"] = text as AnyObject
