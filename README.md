@@ -1,10 +1,6 @@
 # Project 4 - *SoapBox*
 
-Time spent: **X** hours spent in total
-
-Wednesday: 4 hours
-Friday: 2 hours
-Sunday: 6 hours
+Time spent: **13** hours spent in total
 
 
 ## User Stories
@@ -49,7 +45,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![](https://i.imgur.com/G6IEwVe.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
